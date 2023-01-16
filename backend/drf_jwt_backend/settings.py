@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
+    'capstone',
     'cars.apps.CarsConfig'  # This app is for example use only
 ]
 
@@ -54,7 +56,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'drf_jwt_backend.urls'
 
