@@ -1,9 +1,14 @@
-# from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.contrib.auth.models import AbstractUser, UserManager
 
 
 class User(AbstractUser):
-    pass
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    object = UserManager
+
+    USERNAME_FIELD = 'username'
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User
