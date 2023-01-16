@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
-from .models import Video, Entry
+from .models import *
 
 # Register your models here.
 
-admin.site.register(Video, Entry, User)
+models_list = [Video, Entry, Exercise]
+admin.site.register(models_list)

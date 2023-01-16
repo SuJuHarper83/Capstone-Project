@@ -25,7 +25,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'capstone.User'
+AUTH_USER_MODEL = 'authentication.User'
 
 
 # Application definition
