@@ -78,14 +78,11 @@ def entry_by_id(request, pk):
 def create_playlist(request):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
-    if request.method == 'GET': #200 OK
-        playlist = Playlist.objects.all()
-        video = Video.objects
-    elif request.method == 'POST': #201 Created
+    if request.method == 'POST': #201 Created
+        playlist = Playlist.objects
         serializer = PlaylistSerializer(data=request.data)
         serializer.is_valid()
         serializer.save(user=request.user)
-        playlist.videos.add(*videos)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     serializer = PlaylistSerializer(playlist, many=True)
@@ -98,12 +95,11 @@ def create_playlist(request):
 def add_to_playlist(request, pk):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
-    videos = Video.objects
     playlist=Playlist.objects
     if request.method == 'POST': #201 Created
-        item = Video.objects.get(id=pk)
-        playlist.video = item
-        Playlist.objects.update(video=item)
+        video = Video.objects(pk=pk)
+        for i in playlist():
+            video.append(pk)
         serializer = PlaylistSerializer(data=request.data)
         serializer.is_valid()
         serializer.save(user=request.user)

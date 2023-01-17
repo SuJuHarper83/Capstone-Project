@@ -4,7 +4,7 @@ from authentication.models import User
 # Create your models here.
 
 class Video(models.Model):
-    video_id = models.CharField(max_length=255)
+    video = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -12,7 +12,7 @@ class Video(models.Model):
 
 class Playlist(models.Model):
     list_title = models.CharField(max_length=255)
-    video = models.ManyToManyField(Video)
+    item = models.ManyToManyField(Video, blank=True, default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
