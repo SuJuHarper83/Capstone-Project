@@ -8,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.urls import reverse
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Video, Entry, Exercise
-from .serializers import VideoSerializer, EntrySerializer, ExerciseSerializer
+from .models import Video, Playlist, Entry, Exercise
+from .serializers import VideoSerializer, PlaylistSerializer, EntrySerializer, ExerciseSerializer
 
 # Create your views here.
 
@@ -63,6 +63,7 @@ def journal_entry(request):
 
 
 @api_view (['GET'])
+@permission_classes ([IsAuthenticated])
 def entry_by_id(request, pk):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
@@ -70,4 +71,56 @@ def entry_by_id(request, pk):
     if request.method == 'GET': #200 OK
         serializer = EntrySerializer(entry);
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view (['GET', 'POST'])
+@permission_classes ([IsAuthenticated])
+def create_playlist(request):
+    print(
+        'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+    if request.method == 'GET': #200 OK
+        playlist = Playlist.objects.all()
+        video = Video.objects
+    elif request.method == 'POST': #201 Created
+        serializer = PlaylistSerializer(data=request.data)
+        serializer.is_valid()
+        serializer.save(user=request.user)
+        playlist.videos.add(*videos)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    serializer = PlaylistSerializer(playlist, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view (['POST'])
+@permission_classes ([IsAuthenticated])
+def add_to_playlist(request, pk):
+    print(
+        'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+    videos = Video.objects
+    playlist=Playlist.objects
+    if request.method == 'POST': #201 Created
+        item = Video.objects.get(id=pk)
+        playlist.video = item
+        Playlist.objects.update(video=item)
+        serializer = PlaylistSerializer(data=request.data)
+        serializer.is_valid()
+        serializer.save(user=request.user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    serializer = PlaylistSerializer(playlist, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+        
+
+# @api_view (['GET'])
+# def video_by_keyword(request, pk):
+#     print(
+#         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+#     entry = get_object_or_404(Video, pk=pk)
+#     if request.method == 'GET': #200 OK
+#         serializer = VideoSerializer(entry);
+#         return Response(serializer.data, status=status.HTTP_200_OK)
 

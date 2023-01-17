@@ -10,13 +10,19 @@ class Video(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+class Playlist(models.Model):
+    list_title = models.CharField(max_length=255)
+    video = models.ManyToManyField(Video)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 class Entry(models.Model):
-    date = models.DateField()
+    date = models.DateField(null=True)
     input_a = models.CharField(max_length=2000)
     input_b = models.CharField(max_length=3000)
     input_c = models.CharField(max_length=3000)
     mood = models.IntegerField()
-    image = models.ImageField(upload_to='post_images', null=True)
+    image = models.ImageField(upload_to='post_images', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

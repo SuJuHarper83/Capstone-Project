@@ -3,5 +3,7 @@ from .models import *
 
 # Register your models here.
 
-models_list = [Video, Entry, Exercise]
-admin.site.register(models_list)
+admin.site.register(Video)
+admin.site.register(Playlist)
+admin.site.register(Entry)
+admin.site.register(Exercise)
