@@ -11,14 +11,14 @@ class Video(models.Model):
 
 class Entry(models.Model):
     date = models.DateField()
-    input_1 = models.CharField(max_length=2000)
-    input_2 = models.CharField(max_length=3000)
-    input_3 = models.CharField(max_length=3000)
+    input_a = models.CharField(max_length=2000)
+    input_b = models.CharField(max_length=3000)
+    input_c = models.CharField(max_length=3000)
     mood = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Exercise(models.Model):
     title = models.CharField(max_length=255)
-    discription = models.CharField(max_length=3000)
-    example = models.CharField(max_length=1000)
+    input_d = models.CharField(max_length=3000)
+    input_e = models.CharField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,20 +1,20 @@
 from rest_framework import serializers
 from .models import Video, Entry, Exercise
 
-class VideoSerializer(serializers.Serializer):
+class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
         fields = ['id', 'video_id', 'title', 'description']
         depth = 1
 
-class EntrySerializer(serializers.Serializer):
+class EntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
-        fields = ['id', 'date', 'input_1', 'input_2', 'input_3', 'mood']
+        fields = ['id', 'date', 'input_a', 'input_b', 'input_c', 'mood']
         depth = 1
 
-class ExerciseSerializer(serializers.Serializer):
+class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exercise
-        fields = ['id', 'title', 'description', 'examples']
+        fields = ['id', 'title', 'input_d', 'input_e']
         depth = 1
