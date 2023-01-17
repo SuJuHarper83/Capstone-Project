@@ -9,13 +9,16 @@ class Video(models.Model):
     description = models.CharField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
 class Entry(models.Model):
     date = models.DateField()
     input_a = models.CharField(max_length=2000)
     input_b = models.CharField(max_length=3000)
     input_c = models.CharField(max_length=3000)
     mood = models.IntegerField()
+    image = models.ImageField(upload_to='post_images', null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 class Exercise(models.Model):
     title = models.CharField(max_length=255)
