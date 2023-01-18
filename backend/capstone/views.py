@@ -95,9 +95,9 @@ def create_playlist(request):
 def add_to_playlist(request, pk):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
-    playlist=Playlist.objects(pk=pk)
+    playlist=get_object_or_404(Playlist, pk=pk)
     if request.method == 'PATCH': #201 Created
-        item = get_object_or_404(Video=pk)
+        item = get_object_or_404(Video, pk=pk)
         for i in playlist:
             playlist.append(item)
         serializer = PlaylistSerializer(data=request.data)
