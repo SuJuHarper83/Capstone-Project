@@ -18,6 +18,7 @@ class Playlist(models.Model):
 
 class Entry(models.Model):
     date = models.DateField(null=True)
+    title = models.CharField(max_length=255, blank=True, null=True)
     input_a = models.CharField(max_length=2000)
     input_b = models.CharField(max_length=3000)
     input_c = models.CharField(max_length=3000)

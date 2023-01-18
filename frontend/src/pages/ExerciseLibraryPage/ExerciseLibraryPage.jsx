@@ -5,17 +5,17 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const [user, token] = useAuth();
-const [videos, setVideos] = useState([]);
+const [exercise, setExercises] = useState([]);
 
 useEffect(() => {
-    getVideos();
+    getExercises();
   }, [token]);
 
-  async function getVideos(){
+  async function getExercises(){
     try {
-      let response = await axios.get(videos)
+      let response = await axios.get(exercise)
       console.log(response.data.items);
-      setVideos(response.data.items);
+      setExercises(response.data.items);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -23,7 +23,7 @@ useEffect(() => {
 
     function handleSubmit(event) {
       event.preventDefault();
-      getVideos()
+      getExercises()
     }
 
     return (

@@ -18,7 +18,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
 class EntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
-        fields = ['id', 'date', 'input_a', 'input_b', 'input_c', 'mood', 'image']
+        fields = ['id', 'date', 'title', 'input_a', 'input_b', 'input_c', 'mood', 'image']
         depth = 1
 
 
