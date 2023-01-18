@@ -1,8 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import ExerciseList from "../../components/ExerciseList/ExerciseList";
+import AddExerciseForm from "../../components/AddExercise/AddExercise";
 
 import axios from "axios";
+
+const ExerciseLibrary = () => {
 
 const [user, token] = useAuth();
 const [exercise, setExercises] = useState([]);
@@ -19,15 +23,25 @@ useEffect(() => {
     } catch (error) {
       console.log(error.response.data);
     }
-  }
 
     function handleSubmit(event) {
       event.preventDefault();
       getExercises()
     }
+}
 
+    
     return (
-        <FlexBox>
-            {props.ExerciseArry.map(el => <ExerciseList key={el.id.title} video = {el}/>)}
-        </FlexBox> 
+        <>
+        <div>
+        <AddExerciseForm addExerciseProperty={exercise} />
+        </div>
+        <div>
+        <ExerciseList ExerciseArray={exercise} />
+        </div>
+        </>
     )
+
+}
+
+export default ExerciseLibrary

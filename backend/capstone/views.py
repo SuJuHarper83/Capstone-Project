@@ -90,16 +90,16 @@ def create_playlist(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view (['POST'])
+@api_view (['PATCH'])
 @permission_classes ([IsAuthenticated])
 def add_to_playlist(request, pk):
     print(
         'User ', f"{request.user.id} {request.user.email} {request.user.username}")
-    playlist=Playlist.objects
-    if request.method == 'POST': #201 Created
-        video = Video.objects(pk=pk)
-        for i in playlist():
-            video.append(pk)
+    playlist=Playlist.objects(pk=pk)
+    if request.method == 'PATCH': #201 Created
+        item = get_object_or_404(Video=pk)
+        for i in playlist:
+            playlist.append(item)
         serializer = PlaylistSerializer(data=request.data)
         serializer.is_valid()
         serializer.save(user=request.user)

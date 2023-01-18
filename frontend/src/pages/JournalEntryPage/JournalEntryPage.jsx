@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { useParams } from 'react-router-dom'
 
 import axios from "axios"
 
@@ -8,6 +9,7 @@ const JournalEntry = () => {
 
     const [user, token] = useAuth();
     const [entry, setEntry] = useState([]);
+    const { id } = useParams();
 
     useEffect(() => {
         getEntry();
@@ -15,7 +17,7 @@ const JournalEntry = () => {
 
     async function getEntry(){
         try {
-          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/addEntry/`)
+          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/addEntry/${id}`)
           console.log(response.data.items);
           setEntry(response.data.items);
         } catch (error) {
@@ -23,12 +25,10 @@ const JournalEntry = () => {
         }
       }
     
-        function handleSubmit(event) {
-          event.preventDefault();
-          getEntry()
-        }
-
-}
+        // function handleSubmit(event) {
+        //   event.preventDefault();
+        //   getEntry()
+        // }
 
     return (
         <div>
@@ -43,5 +43,7 @@ const JournalEntry = () => {
             <p>{entry.mood}</p>
         </div>
     )
+
+}
 
 export default JournalEntry
