@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import useAuth from "../../hooks/useAuth";
-
-import axios from "axios";
+// import useAuth from "../../hooks/useAuth";
+// import axios from "axios";
 
 const AddExerciseForm = (props) => {
 
-    const [user, token] = useAuth();
+    // const [user, token] = useAuth();
     const [title, setTitle] = useState("");
     const [input_d, setD] = useState("");
     const [input_e, setE] = useState("");

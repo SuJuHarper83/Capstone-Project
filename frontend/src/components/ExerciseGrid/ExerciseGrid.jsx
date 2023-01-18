@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+import { Link } from 'react-router-dom';
+// import axios from "axios";
 import styled from "styled-components";
 
 const colorArray = ["#4f6d7a", "#c0d6df", "#dbe9ee", "#4a6fa5", "#166088"];
@@ -20,7 +21,7 @@ const ExerciseGrid = ({exercise}) => {
     return ( 
         <Grid style={{backgroundColor: `${colorArray[Math.floor(Math.random() * colorArray.length)]}` }}>
             <Link to={`/${exercise.id}`}>
-            <button className="exercise-btn" {exercise.title} alt=""/>
+            <button className="exercise-btn">{exercise.title}</button>
             </Link>
         </Grid>
      );

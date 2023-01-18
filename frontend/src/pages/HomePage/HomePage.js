@@ -12,7 +12,7 @@ const HomePage = () => {
 
     const [user, token] = useAuth();
     const [entries, setEntries] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+    // const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
       getEntries();

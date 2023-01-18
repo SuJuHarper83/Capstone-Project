@@ -11,16 +11,6 @@ const SearchBar = (props) => {
            <input type="text" value={search} onChange={(event) => SetSearch(event.target.value)}/>
            <button className="search-btn" onClick={() => SetSearch()}>Filter</button>
            </div>
-                {/* <tbody>
-                        <tr className="search-head">
-                            <th className="search-th">Title</th>
-                            <th className="search-th">Artist</th>
-                            <th className="search-th">Album</th>
-                            <th className="search-th">Release Date</th>
-                            <th className="search-th">Genre</th>
-                            <th className="search-th"></th>
-                        </tr>
-                </tbody> */}
             <table>
                 <tbody className="search-table">
                     {props.entry.filter((entry) => {

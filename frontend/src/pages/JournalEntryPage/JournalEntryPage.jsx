@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useParams } from 'react-router-dom'
-
 import axios from "axios"
+import NewJournalEntry from "../../components/AddJournalEntry/AddJournalEntry";
 
 const JournalEntry = () => {
 
@@ -32,6 +32,9 @@ const JournalEntry = () => {
 
     return (
         <div>
+            <div>
+            <NewJournalEntry newJournalEntryProperty={entry} />
+            </div>
             <h5 className="entry-heading">{entry.title}</h5>
             <h3 className="question-heading">How did you move today?</h3>
             <p>{entry.input_a}</p>

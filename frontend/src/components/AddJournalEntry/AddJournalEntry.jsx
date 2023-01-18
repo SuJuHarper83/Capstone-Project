@@ -1,11 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
+// import axios from "axios";
 
-import axios from "axios";
+const NewJournalEntry = (props) => {
 
-const AddJournalEntry = (props) => {
-
-    const [user, token] = useAuth();
+    // const [user, token] = useAuth();
     const [date, setDate] = useState("");
     const [input_a, setA] = useState("");
     const [input_b, setB] = useState("");
@@ -21,15 +21,15 @@ const AddJournalEntry = (props) => {
             input_b: input_b,
             input_c: input_c,
             mood: mood,
-            image: image
+            image: image,
         };
-        console.log(newEntry)
-        props.newJournalEntryProperty(newEntry)
-    }
+            console.log(newEntry);
+            props.newJournalEntryProperty(newEntry);
+        }
+        
 
     return (
     <div className="container">
-    <h1>Home Page for {user.username}!</h1>
         <form onSubmit={handleSubmit} className="add-entry-table">
             <div className="form-group">
                 <p>
@@ -66,4 +66,4 @@ const AddJournalEntry = (props) => {
 
 }
 
-export default AddJournalEntry
+export default NewJournalEntry
