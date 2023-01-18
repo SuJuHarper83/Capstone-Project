@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate, Link } from "react-router-dom";
 import ExerciseList from "../../components/ExerciseList/ExerciseList";
 import AddExerciseForm from "../../components/AddExercise/AddExercise";
 
@@ -10,6 +11,7 @@ const ExerciseLibrary = () => {
 
 const [user, token] = useAuth();
 const [exercise, setExercises] = useState([]);
+const navigate = useNavigate();
 
 useEffect(() => {
     getExercises();
@@ -17,7 +19,7 @@ useEffect(() => {
 
   async function getExercises(){
     try {
-      let response = await axios.get('http://127.0.0.1:8000/api/capstone/addExercises/')
+      let response = await axios.get('http://127.0.0.1:8000/api/capstone/exercise/')
       console.log(response.data.items);
       setExercises(response.data.items);
     } catch (error) {
@@ -39,6 +41,7 @@ useEffect(() => {
         <div>
         <ExerciseList ExerciseArray={exercise} />
         </div>
+        <li><button onClick={() => navigate("/")}>Home</button></li>
         </>
     )
 

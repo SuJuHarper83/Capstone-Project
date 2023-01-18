@@ -37,6 +37,7 @@ function App() {
         <Route path="/exercise_library" element={<PrivateRoute><ExerciseLibraryPage /></PrivateRoute>} />
         <Route path="/video_library" element={<PrivateRoute><VideoLibraryPage /></PrivateRoute>} />
         <Route path="/chart" element={<PrivateRoute><ChartPage /></PrivateRoute>} />
+        <Route path="/journal_entries" element={<PrivateRoute><JournalEntryPage /></PrivateRoute>} />
       </Routes>
       <Footer />
     </div>

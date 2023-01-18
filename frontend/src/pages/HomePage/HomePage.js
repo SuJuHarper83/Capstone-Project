@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import DisplayEntries from "../../components/DisplayEntries/DisplayEntries";
 import SearchBar from "../../components/SearchEntries/SearchEntries";
-
 import axios from "axios";
 
 const HomePage = () => {
@@ -11,7 +10,7 @@ const HomePage = () => {
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
 
     const [user, token] = useAuth();
-    const [entries, setEntries] = useState([]);
+    const [entry, setEntry] = useState([]);
     // const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
@@ -21,9 +20,9 @@ const HomePage = () => {
 
     async function getEntries(){
       try {
-        let response = await axios.get('http://127.0.0.1:8000/api/capstone/addEntry/')
+        let response = await axios.get('http://127.0.0.1:8000/api/capstone/entry/');
         console.log(response.data.items);
-        setEntries(response.data.items);
+        setEntry(response.data.items);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -34,16 +33,17 @@ const HomePage = () => {
         getEntries()
       }
 
+
       return (
         <>
           <div className="title-container-a">
             <h1>Home Page for {user.username}!</h1>
           </div>
           <div className="search-bar">
-          <SearchBar entry={entries} />
+          <SearchBar entry={entry} />
           </div>
           <div>
-          <DisplayEntries parentEntries ={entries} />
+          <DisplayEntries parentEntries ={entry} />
           </div>
         </>
       );
