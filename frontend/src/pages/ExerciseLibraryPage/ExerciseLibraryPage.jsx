@@ -13,7 +13,7 @@ useEffect(() => {
 
   async function getExercises(){
     try {
-      let response = await axios.get(exercise)
+      let response = await axios.get('http://127.0.0.1:8000/api/capstone/addExercises/')
       console.log(response.data.items);
       setExercises(response.data.items);
     } catch (error) {

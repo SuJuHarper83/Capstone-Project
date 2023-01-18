@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import DisplayEntries from "../../components/DisplayEntries/DisplayEntries";
+import SearchBar from "../../components/SearchEntries/SearchEntries";
 
 import axios from "axios";
 
@@ -20,7 +21,7 @@ const HomePage = () => {
 
     async function getEntries(){
       try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/capstone/addEntry/`)
+        let response = await axios.get('http://127.0.0.1:8000/api/capstone/addEntry/')
         console.log(response.data.items);
         setEntries(response.data.items);
       } catch (error) {
@@ -39,10 +40,7 @@ const HomePage = () => {
             <h1>Home Page for {user.username}!</h1>
           </div>
           <div className="search-bar">
-            <form onSubmit={handleSubmit}>
-              <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}/>
-            <button className="button" type="submit">Search</button>
-            </form>
+          <SearchBar entry={entries} />
           </div>
           <div>
           <DisplayEntries parentEntries ={entries} />
