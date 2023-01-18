@@ -18,7 +18,7 @@ const JournalEntry = () => {
 
     async function getEntry(){
         try {
-          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/addEntry/${id}`)
+          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/entry/${id}`)
           console.log(response.data.items);
           setEntry(response.data.items);
         } catch (error) {

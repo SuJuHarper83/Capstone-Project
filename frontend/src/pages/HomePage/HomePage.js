@@ -20,7 +20,7 @@ const HomePage = () => {
 
     async function getEntries(){
       try {
-        let response = await axios.get('http://127.0.0.1:8000/api/capstone/entry/');
+        let response = await axios.get(`http://127.0.0.1:8000/api/capstone/entry/`);
         console.log(response.data.items);
         setEntry(response.data.items);
       } catch (error) {

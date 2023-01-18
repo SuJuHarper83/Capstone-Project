@@ -19,7 +19,7 @@ const ExerciseItem = () => {
 
     async function getExercise(){
         try {
-          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/addExercises/${id}`)
+          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/exercise/${id}`)
           console.log(response.data.items);
           setExercise(response.data.items);
         } catch (error) {
@@ -29,7 +29,7 @@ const ExerciseItem = () => {
     
         function handleSubmit(event) {
           event.preventDefault();
-          getItem()
+          getExercise()
         }
 
     return (
