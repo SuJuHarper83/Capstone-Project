@@ -18,18 +18,19 @@ const JournalEntry = () => {
 
     async function getEntry(){
         try {
-          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/entry/${id}`)
+          let response = await axios.get('http://127.0.0.1:8000/api/capstone/entry/${id}', {headers: {Authorization: "Bearer " + token}});
           console.log(response.data.items);
           setEntry(response.data.items);
         } catch (error) {
           console.log(error.response.data);
+          getEntry()
         }
       }
     
-        function handleSubmit(event) {
-          event.preventDefault();
-          getEntry()
-        }
+        // function handleSubmit(event) {
+        //   event.preventDefault();
+        //   getEntry()
+        // }
 
     return (
         <div>

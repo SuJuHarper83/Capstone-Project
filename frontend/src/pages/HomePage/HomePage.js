@@ -11,28 +11,26 @@ const HomePage = () => {
 
     const [user, token] = useAuth();
     const [entry, setEntry] = useState([]);
-    // const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
       getEntries();
     }, [token]);
-
-
+      
     async function getEntries(){
       try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/capstone/entry/`);
+        let response = await axios.get('http://127.0.0.1:8000/api/capstone/entry/', {headers: {Authorization: "Bearer " + token}});
         console.log(response.data.items);
         setEntry(response.data.items);
       } catch (error) {
         console.log(error.response.data);
       }
-    }
-  
-      function handleSubmit(event) {
-        event.preventDefault();
-        getEntries()
-      }
+    };
 
+  
+      // function handleSubmit(event) {
+      //   event.preventDefault();
+      //   getEntries()
+      // }
 
       return (
         <>
@@ -47,8 +45,7 @@ const HomePage = () => {
           </div>
         </>
       );
-    
-  }
+    }
 
 export default HomePage;
 

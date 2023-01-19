@@ -19,7 +19,7 @@ const ExerciseItem = () => {
 
     async function getExercise(){
         try {
-          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/exercise/${id}`)
+          let response = await axios.get('http://127.0.0.1:8000/api/capstone/exercise/${id}', {headers: {Authorization: "Bearer " + token}});
           console.log(response.data.items);
           setExercise(response.data.items);
         } catch (error) {
@@ -43,4 +43,5 @@ const ExerciseItem = () => {
         </div>
     )
 }
+
 export default ExerciseItem

@@ -1,32 +1,50 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import useAuth from "../../hooks/useAuth";
-// import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
-const NewJournalEntry = (props) => {
+const NewJournalEntry = () => {
 
-    // const [user, token] = useAuth();
+    const [user, token] = useAuth();
     const [date, setDate] = useState("");
     const [input_a, setA] = useState("");
     const [input_b, setB] = useState("");
     const [input_c, setC] = useState("");
     const [mood, setMood] = useState("");
     const [image, setImage] = useState("");
+    const [newEntry, setEntry] = useState("");
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        let newEntry = {
-            date: date,
-            input_a: input_a,
-            input_b: input_b,
-            input_c: input_c,
-            mood: mood,
-            image: image,
-        };
-            console.log(newEntry);
-            props.newJournalEntryProperty(newEntry);
-        }
-        
+    useEffect(() => {
+        addNewEntry();
+    }, [token]);
+
+    async function addNewEntry(props){
+        try {
+            let newEntry = {
+                date: date,
+                input_a: input_a,
+                input_b: input_b,
+                input_c: input_c,
+                mood: mood,
+                image: image
+            };
+    
+            let response = await axios.post('http://127.0.0.1:8000/api/capstone/entry/', newEntry, {headers: {Authorization: "Bearer " + token}});
+            console.log(response.data.items);
+            setEntry(response.data.items);
+            } catch (error) {
+            console.log(error.response.data);  
+            props.newJournalEntryProperty(newEntry); 
+        } 
+    };
+  
+        useNavigate('/');
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            addNewEntry()
+            };
 
     return (
     <div className="container">

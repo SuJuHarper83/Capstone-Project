@@ -19,20 +19,20 @@ useEffect(() => {
 
   async function getExercises(){
     try {
-      let response = await axios.get(`http://127.0.0.1:8000/api/capstone/exercise/`)
+      let response = await axios.get('http://127.0.0.1:8000/api/capstone/exercise/', {headers: {Authorization: "Bearer " + token}});
       console.log(response.data.items);
       setExercises(response.data.items);
     } catch (error) {
       console.log(error.response.data);
-    }
-
-    function handleSubmit(event) {
-      event.preventDefault();
       getExercises()
     }
+
+    // function handleSubmit(event) {
+    //   event.preventDefault();
+    //   getExercises()
+    // }
 }
 
-    
     return (
         <>
         <div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 // import axios from "axios";
 import styled from "styled-components";
+import useAuth from "../../hooks/useAuth";
 
 const colorArray = ["#4f6d7a", "#c0d6df", "#dbe9ee", "#4a6fa5", "#166088"];
 
@@ -16,6 +17,8 @@ margin: 1rem;
 border-radius: 10px;
 font-size: smaller;
 `;
+
+const [user, token] = useAuth();
 
 const VideoGrid = ({video}) => {
     return ( 
