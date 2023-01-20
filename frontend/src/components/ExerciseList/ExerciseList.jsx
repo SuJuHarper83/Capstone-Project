@@ -5,24 +5,30 @@ import useAuth from "../../hooks/useAuth";
 import ExerciseGrid from "../ExerciseGrid/ExerciseGrid";
 
 const FlexBox = styled.ul`
-display: flex;
-flex-wrap: wrap;`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const ExerciseList = (props) => {
+  const [user, token] = useAuth();
+  const [exerciseId, setExerciseId] = useState();
 
-    const [user, token] = useAuth();
-    const [exerciseId, setExerciseId] = useState();
+  useEffect(() => {
+    ExerciseList();
+  }, []);
 
-    useEffect(() => {
-        ExerciseList();
-      }, []);
+  function handleSubmit(event) {
+    event.preventDefault();
+    ExerciseList();
+  }
 
-    
-    return (
+  return (
     <FlexBox>
-    {props.ExerciseArray.map(el => <ExerciseGrid key={exerciseId} video = {el}/>)}
+      {props.ExerciseArray.map((el) => (
+        <ExerciseGrid key={exerciseId} exercise={el} />
+      ))}
     </FlexBox>
-    )
-}
+  );
+};
 
-export default ExerciseList
+export default ExerciseList;

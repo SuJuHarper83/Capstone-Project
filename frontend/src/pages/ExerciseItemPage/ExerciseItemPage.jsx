@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 const ExerciseItem = () => {
+  const [user, token] = useAuth();
+  const [exercise, setExercise] = useState([]);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    const [user, token] = useAuth();
-    const [exercise, setExercise] = useState([]);
-    const navigate = useNavigate();
-    const { id } = useParams();
+  useEffect(() => {
+    getExercise();
+  }, [exercise]);
 
-    useEffect(() => {
-        getExercise();
-      }, [exercise]);
+  async function getExercise() {
+    try {
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/capstone/getExercises/${id}`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+      setExercise(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
 
-    async function getExercise(){
-        try {
-          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/getExercises/${id}`, {headers: {Authorization: "Bearer " + token}});
-          console.log(response.data);
-          setExercise(response.data);
-        } catch (error) {
-          console.log(error.response.data);
-        }
-      }
-    
-        // function handleSubmit(event) {
-        //   event.preventDefault();
-        //   getExercise()
-        // }
+  function handleSubmit(event) {
+    event.preventDefault();
+    getExercise();
+  }
 
-    return (
-        <div>
-            <h5 className="exercise-heading">{exercise.title}</h5>
-            <h3 className="item-heading">Description</h3>
-            <p>{exercise.input_d}</p>
-            <h3 className="item-heading">Examples</h3>
-            <p>{exercise.input_e}</p>
-            <li><button onClick={() => navigate("/")}>Home</button></li>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h5 className="exercise-heading">{exercise.title}</h5>
+      <h3 className="item-heading">Description</h3>
+      <p>{exercise.input_d}</p>
+      <h3 className="item-heading">Examples</h3>
+      <p>{exercise.input_e}</p>
+      <li>
+        <button onClick={() => navigate("/")}>Home</button>
+      </li>
+    </div>
+  );
+};
 
-export default ExerciseItem
+export default ExerciseItem;

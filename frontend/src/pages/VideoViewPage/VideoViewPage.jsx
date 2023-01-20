@@ -2,56 +2,64 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
 const VideoPage = () => {
+  const [user, token] = useAuth();
+  const [video, viewVideo] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const [user, token] = useAuth();
-    const [video, viewVideo] = useState([]);
-    const { id } = useParams();
-    const navigate = useNavigate();
-    
-    useEffect(() => {
-      getVideo();
-    }, []);
-  
-    async function getVideo(){
-      try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/capstone/getVideos/${id}`, {headers: {Authorization: "Bearer " + token}});
-        console.log(response.data);
-        viewVideo(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
+  useEffect(() => {
+    getVideo();
+  }, []);
+
+  async function getVideo() {
+    try {
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/capstone/getVideos/${id}`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+      viewVideo(response.data);
+    } catch (error) {
+      console.log(error.response.data);
     }
 
-    const VidPlayer = styled.iframe`
+    function handleSubmit(event) {
+      event.preventDefault();
+      getVideo();
+    }
+  }
+
+  const VidPlayer = styled.iframe`
     border-radius: 10px;
     display: block;
     margin: auto;
-    `
- 
-    return ( 
-        <> 
-          <div className="title-container-b"></div> 
-            <div className="player">
-            <VidPlayer title="ytplayer"
-                    type="text/html"
-                    width="640"
-                    height="360"
-                    src={`https://www.youtube.com/embed/${id}?autoplay=1&origin=http://example.com`}
-                    frameborder="0"> 
-            </VidPlayer>
-            </div>
-            <div>
-            <li><button onClick={() => navigate("video_library")}>Back</button></li>
-            </div>
-        </>
-      );
-  }
+  `;
 
+  return (
+    <>
+      <div className="title-container-b"></div>
+      <div className="player">
+        <VidPlayer
+          title="ytplayer"
+          type="text/html"
+          width="640"
+          height="360"
+          src={`https://www.youtube.com/embed/${id}?autoplay=1&origin=http://example.com`}
+          frameborder="0"
+        ></VidPlayer>
+      </div>
+      <div>
+        <li>
+          <button onClick={() => navigate("video_library")}>Back</button>
+        </li>
+      </div>
+    </>
+  );
+};
 
 export default VideoPage;

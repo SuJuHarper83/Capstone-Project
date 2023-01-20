@@ -14,7 +14,7 @@ const ExerciseLibrary = () => {
 
   useEffect(() => {
     getExercises();
-  }, [exercise]);
+  }, []);
 
   async function getExercises() {
     try {

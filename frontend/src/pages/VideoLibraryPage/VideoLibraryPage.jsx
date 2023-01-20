@@ -27,10 +27,10 @@ const VideoLibrary = () => {
       console.log(error.response.data);
     }
 
-    // function handleSubmit(event) {
-    //   event.preventDefault();
-    //   getVideos()
-    // }
+    function handleSubmit(event) {
+      event.preventDefault();
+      getVideos()
+    }
   }
 
   return (

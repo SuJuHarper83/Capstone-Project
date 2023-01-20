@@ -26,13 +26,13 @@ const JournalEntry = () => {
         }
       }
     
-        // function handleSubmit(event) {
-        //   event.preventDefault();
-        //   getEntry()
-        // }
+        function handleSubmit(event) {
+          event.preventDefault();
+          getEntry()
+        }
 
     return (
-        <div>
+        <div className="journal-entry-container">
             <h5 className="entry-heading">{entry.title}</h5>
             <h3 className="question-heading">How did you move today?</h3>
             <p>{entry.input_a}</p>

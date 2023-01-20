@@ -19,7 +19,7 @@ class Playlist(models.Model):
 
 
 class Entry(models.Model):
-    date = models.DateField(default=0)
+    date = models.DateField(default=timezone.now)
     title = models.CharField(max_length=255)
     input_a = models.CharField(max_length=2000)
     input_b = models.CharField(max_length=3000)
