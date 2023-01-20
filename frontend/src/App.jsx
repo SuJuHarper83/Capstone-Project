@@ -26,13 +26,14 @@ function App() {
   return (
     <div>
       <Navbar />
+      <ExerciseLibraryPage />
       <Routes>
         <Route exact path="/" element={<PrivateRoute><HomePage /></PrivateRoute>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/exercise/:id" element={<PrivateRoute><ExerciseItemPage /></PrivateRoute>} />
-        <Route path="/entry/:id" element={<PrivateRoute><JournalEntryPage /></PrivateRoute>} />
-        <Route path="/video/:id" element={<PrivateRoute><VideoViewPage /></PrivateRoute>} />
+        <Route path="/exercise/:exercise.id" element={<PrivateRoute><ExerciseItemPage /></PrivateRoute>} />
+        <Route path="/entry/:entry.id" element={<PrivateRoute><JournalEntryPage /></PrivateRoute>} />
+        <Route path="/video/:video.id" element={<PrivateRoute><VideoViewPage /></PrivateRoute>} />
         <Route path="/playlist" element={<PrivateRoute><PlaylistPage /></PrivateRoute>} />
         <Route path="/exercise_library" element={<PrivateRoute><ExerciseLibraryPage /></PrivateRoute>} />
         <Route path="/video_library" element={<PrivateRoute><VideoLibraryPage /></PrivateRoute>} />

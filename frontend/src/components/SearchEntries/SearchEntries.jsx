@@ -17,12 +17,10 @@ const SearchBar = (props) => {
                      if (search === ""){
                         return entry;
                         }
-                    if (entry.date.includes(search) ||
-                    entry.title.includes(search) ||
+                    if (entry.title.includes(search) ||
                     entry.input_a.includes(search) ||
                     entry.input_b.includes (search) ||
-                    entry.input_c.includes(search) ||
-                    entry.mood.includes(search)){
+                    entry.input_c.includes(search)){
                         return entry;
                     }
                 })

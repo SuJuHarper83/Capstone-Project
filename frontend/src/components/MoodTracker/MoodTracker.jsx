@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Chart } from "react-google-charts";
 import useAuth from "../../hooks/useAuth";
-import { useParams } from 'react-router-dom'
 import axios from 'axios';
 
 const MoodTracker = (props) => {

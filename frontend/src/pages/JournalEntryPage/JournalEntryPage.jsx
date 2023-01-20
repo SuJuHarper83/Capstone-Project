@@ -14,16 +14,15 @@ const JournalEntry = () => {
 
     useEffect(() => {
         getEntry();
-      }, [token]);
+      }, []);
 
     async function getEntry(){
         try {
-          let response = await axios.get('http://127.0.0.1:8000/api/capstone/entry/${id}', {headers: {Authorization: "Bearer " + token}});
-          console.log(response.data.items);
-          setEntry(response.data.items);
+          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/addEntry/${id}`, {headers: {Authorization: "Bearer " + token}});
+          console.log(response.data);
+          setEntry(response.data);
         } catch (error) {
           console.log(error.response.data);
-          getEntry()
         }
       }
     

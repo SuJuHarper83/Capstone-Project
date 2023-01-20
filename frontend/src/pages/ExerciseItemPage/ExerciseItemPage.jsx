@@ -1,9 +1,7 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useParams } from 'react-router-dom'
 import { useNavigate, Link } from "react-router-dom";
-
 import axios from "axios"
 
 const ExerciseItem = () => {
@@ -15,22 +13,22 @@ const ExerciseItem = () => {
 
     useEffect(() => {
         getExercise();
-      }, [token]);
+      }, [exercise]);
 
     async function getExercise(){
         try {
-          let response = await axios.get('http://127.0.0.1:8000/api/capstone/exercise/${id}', {headers: {Authorization: "Bearer " + token}});
-          console.log(response.data.items);
-          setExercise(response.data.items);
+          let response = await axios.get(`http://127.0.0.1:8000/api/capstone/getExercises/${id}`, {headers: {Authorization: "Bearer " + token}});
+          console.log(response.data);
+          setExercise(response.data);
         } catch (error) {
           console.log(error.response.data);
         }
       }
     
-        function handleSubmit(event) {
-          event.preventDefault();
-          getExercise()
-        }
+        // function handleSubmit(event) {
+        //   event.preventDefault();
+        //   getExercise()
+        // }
 
     return (
         <div>

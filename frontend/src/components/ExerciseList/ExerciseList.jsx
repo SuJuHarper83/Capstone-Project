@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import axios from "axios";
 import styled from "styled-components";
 import useAuth from "../../hooks/useAuth";
@@ -11,15 +11,16 @@ flex-wrap: wrap;`
 const ExerciseList = (props) => {
 
     const [user, token] = useAuth();
+    const [exerciseId, setExerciseId] = useState();
 
     useEffect(() => {
         ExerciseList();
-      }, [token]);
+      }, []);
 
     
     return (
     <FlexBox>
-    {props.ExerciseArray.map(el => <ExerciseGrid key={el.id.title} video = {el}/>)}
+    {props.ExerciseArray.map(el => <ExerciseGrid key={exerciseId} video = {el}/>)}
     </FlexBox>
     )
 }

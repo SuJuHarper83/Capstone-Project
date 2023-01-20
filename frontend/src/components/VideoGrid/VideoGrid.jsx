@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 // import axios from "axios";
 import styled from "styled-components";
@@ -16,16 +16,17 @@ box-shadow: 2px 8px 16px -2px rgba(19, 57, 94, 0.486);
 margin: 1rem;
 border-radius: 10px;
 font-size: smaller;
-`;
+`
 
-const [user, token] = useAuth();
+const VideoGrid = (video) => {
+    const [user, token] = useAuth();
+    const [videoId, setVideoId] = useState();
 
-const VideoGrid = ({video}) => {
     return ( 
         <Grid style={{backgroundColor: `${colorArray[Math.floor(Math.random() * colorArray.length)]}` }}>
-            <Link to={`/${video.id}`}>
+            <div onClick={()=> setVideoId(videoId)}>
             <img src={video.thumbnail} height="141" width="256" alt=""/>
-            </Link>
+            </div>
         </Grid>
     );
 

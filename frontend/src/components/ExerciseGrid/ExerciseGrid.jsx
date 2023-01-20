@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 // import axios from "axios";
@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 const colorArray = ["#4f6d7a", "#c0d6df", "#dbe9ee", "#4a6fa5", "#166088"];
 
 const Grid = styled.li`
-width: 200px;
+width: 80px;
 padding: 1rem;
 display: grid;
 column-gap: 1px;
@@ -22,18 +22,21 @@ font-size: smaller;
 const ExerciseGrid = ({exercise}) => {
 
     const [user, token] = useAuth();
+    const [exerciseId, setExerciseId] = useState();
 
     useEffect(() => {
         ExerciseGrid();
-      }, [token]);
+      }, []);
 
-    return ( 
+    return (
+        <div> 
         <Grid style={{backgroundColor: `${colorArray[Math.floor(Math.random() * colorArray.length)]}` }}>
-            <Link to={`/${exercise.id}`}>
-            <button className="exercise-btn">{exercise.title}</button>
-            </Link>
+            <div onClick={()=>setExerciseId(exerciseId)}>
+            <div>{exercise.title}</div>
+            </div>
         </Grid>
-     );
+        </div>
+    );
 
 }
  
