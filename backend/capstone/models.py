@@ -14,7 +14,7 @@ class Video(models.Model):
 
 class Playlist(models.Model):
     list_title = models.CharField(max_length=255)
-    item = models.ManyToManyField(Video, blank=True, default='boo-kitten.gif')
+    item = models.ManyToManyField(Video, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
@@ -25,7 +25,7 @@ class Entry(models.Model):
     input_b = models.CharField(max_length=3000)
     input_c = models.CharField(max_length=3000)
     mood = models.IntegerField()
-    image = models.ImageField(upload_to='post_images', default='2.jpg')
+    image = models.ImageField(upload_to='post_images', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
